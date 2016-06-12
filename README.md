@@ -1,2 +1,2 @@
 # BDOS
-This is a simple console operating system, which will be extended into a full OS in the future.
+This is intended to be a highly efficient, powerful, lightweight console operating system.
