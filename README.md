@@ -2,8 +2,16 @@
 This is intended to be a highly efficient, powerful, lightweight console operating system. Although, it is certainly a work in progress.
 
 ## Compiling and Testing
-In order to compile and test BDOS on a Linux system, you will need to have **gcc** and **ld** (although, in linux these should be installed by default) and **nasm** installed. You will also want to have **qemu** installed because this is what the makefile uses to test the operating system.
-After installing all of those, just run the **makefile** by navigating to the BDOS directory in the terminal and using the following command: `make` 
+*This OS is primarily being developed on Ubuntu, this README doesn't have tested support for any other operating systems.*
 
-### Generating an ISO
-This used to work, but currently the generation of an ISO is unavailable. Hopefully this will be resolved someday.
+Recommended packages to have installed on your development system:
+* **gcc**
+* **ld**
+* **nasm**
+* **qemu**
+
+After insuring that all of these packages are installed, you can **compile** the project by executing the following command in the project directory: `make compile`
+
+To **test** the OS you can use the command: `make run`
+
+Or, if you want to do it all in one command, just type: `make`
