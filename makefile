@@ -7,7 +7,7 @@ compile:
 	@# Compile the C code
 	@gcc -m32 -c kernel.c -o kc.o -ffreestanding
 	@# Link the Assembly and C code together to form a .bin file
-	@ld -m elf_i386 -T link.ld -o iso/boot/kernel.bin kasm.o kc.o
+	@ld -m elf_i386 -T link.ld -o kernel.bin kasm.o kc.o
 
 clean:
 	@# Clean up by removing the .o files
@@ -16,9 +16,4 @@ clean:
 run:
 	@echo "Running..."
 	@# Emulate the operating system using QEMU
-	@qemu-system-i386 -kernel iso/boot/kernel.bin
-
-iso:
-	@echo "Generating ISO..."
-	@# Generate an ISO image
-	@grub-mkrescue -o bdos.iso iso/
+	@qemu-system-i386 -kernel kernel.bin
