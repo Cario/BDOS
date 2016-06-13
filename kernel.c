@@ -9,7 +9,7 @@ static const size_t VGA_HEIGHT = 25;
 // Initialization of console variables
 size_t row = 0;
 size_t column = 0;
-uint8_t color = 0b00001011;						// Set color = 0x<BACKGROUND><FOREGROUND>
+uint8_t color = 0x0B;						// Set color = 0x<BACKGROUND><FOREGROUND>
 uint16_t* buffer = (uint16_t*) 0xB8000;		// Video memory address
 
 /* Color Codes
@@ -40,7 +40,7 @@ void clear_screen()
 		for( size_t x = 0; x < VGA_WIDTH; x++ )
 		{
 			const size_t index = y * VGA_WIDTH + x;
-			buffer[ index ] = 0x20 | color << 8;
+			buffer[ index ] = ' ' | color << 8;
 		}
 	}
 }
@@ -59,6 +59,27 @@ size_t strlen( const char* str )
 	return count;
 }
 
+// Scroll by moving all lines up and dropping the top line
+void scroll()
+{
+	for( size_t y = 0; y < VGA_HEIGHT - 1; y++ )
+	{
+		for( size_t x = 0; x < VGA_WIDTH; x++ )
+		{
+			const size_t index = y * VGA_WIDTH + x;
+			buffer[ index ] = buffer[ index + VGA_WIDTH ];
+		}
+	}
+
+	for( size_t x = 0; x < VGA_WIDTH; x++ )
+	{
+		const size_t index = ( VGA_HEIGHT - 1 ) * VGA_WIDTH + x;
+		buffer[ index ] = ' ' | color << 8;
+	}
+
+	row--;
+}
+
 // Print a character to the screen
 void print_char( char c )
 {
@@ -66,7 +87,13 @@ void print_char( char c )
 	if( c == '\n' )
 	{
 		column = 0;
-		row++;
+
+		// Increase row while checking if it reached the end
+		if( ++row == VGA_HEIGHT )
+		{
+			scroll();
+		}
+
 		return;
 	}
 		
@@ -84,7 +111,7 @@ void print_char( char c )
 		// Increase row while checking if it reached the end
 		if( ++row == VGA_HEIGHT )
 		{
-			row = 0;
+			scroll();
 		}
 	}
 }
@@ -102,16 +129,11 @@ void print_string( const char* str )
 	}
 }
 
-void scroll()
-{
-	
-}
 
-
-// *where is c char define*** The main function of the kernel **** //
+// **** The main function of the kernel **** //
 void kmain()
 {
 	clear_screen();
 
-	print_string( "Hello, World!" );
+	print_string( "Hello, World!\n" );
 }
