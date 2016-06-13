@@ -48,15 +48,15 @@ void clear_screen()
 // Get the length of a string
 size_t strlen( const char* str )
 {
-		size_t count = 0;
+	size_t count = 0;
 
-		// While a character exists at the position, add 1 to the character counter
-		while( str[ count ] != 0 )
-		{
-				count++;
-		}
+	// While a character exists at the position, add 1 to the character counter
+	while( str[ count ] != 0 )
+	{
+		count++;
+	}
 
-		return count;
+	return count;
 }
 
 // Print a character to the screen
@@ -65,9 +65,9 @@ void print_char( char c )
 	// If a newline character is encountered, advance 1 line aligning to the left side of the screen
 	if( c == '\n' )
 	{
-			column = 0;
-			row++;
-			return;
+		column = 0;
+		row++;
+		return;
 	}
 		
 	const size_t index = row * VGA_WIDTH + column;
@@ -79,13 +79,13 @@ void print_char( char c )
 	// If it has, then set the column to the left side of the screen and increase the row by 1.
 	if( ++column == VGA_WIDTH ) 
 	{
-			column = 0;
+		column = 0;
 
-			// Increase row while checking if it reached the end
-			if( ++row == VGA_HEIGHT )
-			{
-					row = 0;
-			}
+		// Increase row while checking if it reached the end
+		if( ++row == VGA_HEIGHT )
+		{
+			row = 0;
+		}
 	}
 }
 
