@@ -2,7 +2,7 @@
 This is intended to be a highly efficient, powerful, lightweight console operating system. Although, it is certainly a work in progress.
 
 ## Compiling and Testing
-*This OS is primarily being developed on Ubuntu, this README doesn't have tested support for any other operating systems.*
+*This OS is primarily being developed on Ubuntu, the makefile and this README don't have tested support for any other operating systems.*
 
 Recommended packages to have installed on your development system:
 * **gcc**
