@@ -15,3 +15,8 @@ After insuring that all of these packages are installed, you can **compile** the
 To **test** the OS you can use the command: `make run`
 
 Or, if you want to do it all in one command, just type: `make`
+
+## Editing
+The main file that we care about editing is the **kernel.c** file. This is where all the fun stuff happens.
+
+In **kernel.c** we use the functions defined in the header and C files in the **include** directory.
