@@ -138,7 +138,7 @@ void colorful()
 		{
 			const size_t index = y * VGA_WIDTH + x;
 			buffer[ index ] = color | color << 8;
-			color++;
+			color = ( color + 1 ) % 256;
 		}
 	}
 }
