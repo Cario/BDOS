@@ -126,3 +126,19 @@ void print_string( const char* str )
 		print_char( str[ i ] );
 	}
 }
+
+void colorful()
+{
+	color = 0;
+
+	// Iterate through each character position on the screen setting each to a different color character
+	for( size_t y = 0; y < VGA_HEIGHT; y++ )
+	{
+		for( size_t x = 0; x < VGA_WIDTH; x++ )
+		{
+			const size_t index = y * VGA_WIDTH + x;
+			buffer[ index ] = color | color << 8;
+			color++;
+		}
+	}
+}

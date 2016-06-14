@@ -11,5 +11,6 @@ void clear_screen();
 void scroll();
 void print_char( char c );
 void print_string( const char* str );
+void colorful();
 
 #endif
