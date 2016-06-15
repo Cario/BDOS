@@ -8,7 +8,7 @@ static const size_t VGA_HEIGHT = 25;
 size_t row = 0;
 size_t column = 0;
 uint8_t color = 0x0B;						// Set color = 0x<BACKGROUND><FOREGROUND>
-uint16_t* buffer = (uint16_t*) 0xB8000;		// Video memory address
+uint16_t* buffer = (uint16_t*) 0xB8000;		// Display memory address
 
 /* Color Codes
 0 = BLACK 
@@ -127,8 +127,10 @@ void print_string( const char* str )
 	}
 }
 
+// Make a colorful mess all over the screen
 void colorful()
 {
+	// Reset color down to the lowest value to start
 	color = 0;
 
 	// Iterate through each character position on the screen setting each to a different color character
@@ -138,7 +140,9 @@ void colorful()
 		{
 			const size_t index = y * VGA_WIDTH + x;
 			buffer[ index ] = color | color << 8;
-			color = ( color + 1 ) % 256;
+
+			// Increase color without allowing it to equal or exceed 256
+			color = ( color + 1 ) % 256;					
 		}
 	}
 }

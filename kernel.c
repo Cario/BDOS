@@ -4,5 +4,5 @@ void kmain()
 {
 	clear_screen();
 
-	print_string( "Hello, world!\n" );
+	print_string( "Hello, World!" );
 }
