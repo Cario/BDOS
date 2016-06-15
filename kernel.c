@@ -2,5 +2,7 @@
 
 void kmain()
 {
-	colorful();
+	clear_screen();
+
+	print_string( "Hello, world!\n" );
 }

@@ -8,6 +8,7 @@ Recommended packages to have installed on your development system:
 * **gcc**
 * **ld**
 * **nasm**
+* **make**
 * **qemu**
 
 After insuring that all of these packages are installed, you can **compile** the project by executing the following command in the project directory: `make compile`
